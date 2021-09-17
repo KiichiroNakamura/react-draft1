@@ -1,2 +1,4 @@
 # react-draft1
 Created with CodeSandbox
+SandboxでAppを使用して動かした
+classComponentをApp自身でしようしている
