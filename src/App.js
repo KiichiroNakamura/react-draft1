@@ -1,27 +1,31 @@
-import "./styles.css";
-import { MoviePlayer } from "./components/MoviePlayer";
+import React, { Component } from "react";
+import "./App.css";
+import "video-react/dist/video-react.css"; // import css
+import { Player, ControlBar, PlaybackRateMenuButton } from "video-react";
 
-export default function App() {
-  return (
-    <div className="App">
-      <div className="header">見出し</div>
-      <div className="bodyContent">
-        <div className="fileList">
-          list
-          <ul>
-            <div className="list-row">
-              <li>file1</li>
-              <button>aa</button>
-            </div>
-            <div className="list-row">
-              <li>file2</li>
-              <button>aa</button>
-            </div>
-          </ul>
-        </div>
-        {/* <div className="palyer">palyer</div> */}
-        <MoviePlayer />
-      </div>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.player.playbackRate = 1;
+    this.forceUpdate();
+  }
+  render() {
+    return (
+      <Player
+        ref={(c) => {
+          this.player = c;
+        }}
+        playsInline
+      >
+        <ControlBar>
+          <PlaybackRateMenuButton order={7} rates={[2, 1.5, 1.0, 0.5]} />
+        </ControlBar>
+        <source
+          src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+          type="video/mp4"
+        />
+      </Player>
+    );
+  }
 }
+
+export default App;
